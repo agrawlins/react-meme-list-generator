@@ -10,14 +10,30 @@ const Meme = () => {
     const [allMemeImages, setAllMemeImages] = React.useState([])
     const [listState, setListState] = React.useState([])
 
+    const editMeme = () => {
+        console.log("Edit Button pressed")
+    }
+
+    const deleteMeme = () => {
+        console.log("Delete Button pressed")
+    }
+
     let mappedList = listState.map((param1, index)=>{
 
         return(
-        <li key={index} className="meme"> 
-         <img src={param1.randomImage} className="meme--image"/>
-                <h2 className="meme--text top">{param1.topText}</h2>
-                <h2 className="meme--text bottom">{param1.bottomText}</h2>        
-        </li>
+            <div className="meme--list">
+                <li key={index}>
+                    <div>
+                        <img src={param1.randomImage} className="meme--image"/>
+                        <h2 className="meme--text top">{param1.topText}</h2>
+                        <h2 className="meme--text bottom">{param1.bottomText}</h2>
+                    </div>
+                </li>
+                <div className="meme">
+                    <button onClick={editMeme}>Edit</button>
+                    <button onClick={deleteMeme}>X</button>      
+                </div>
+            </div>
                 
         )
     })
@@ -35,6 +51,9 @@ const Meme = () => {
             ...prevMeme,
             randomImage: url
         }))
+    }
+    
+    const createMemeImage = () => {
         setListState(param1 => [
             ...param1,
             {
@@ -76,7 +95,7 @@ const Meme = () => {
                     className="form--button"
                     onClick={getMemeImage}
                 >
-                    Get a new meme image 🖼
+                    Get a new meme image
                 </button>
             </div>
             <div className="meme">
@@ -84,6 +103,12 @@ const Meme = () => {
                 <h2 className="meme--text top">{meme.topText}</h2>
                 <h2 className="meme--text bottom">{meme.bottomText}</h2>
             </div>
+            <button 
+                className="form--button"
+                onClick={createMemeImage}
+            >
+                Add to Your Collection
+            </button>
             <ul>
                 {mappedList}
             </ul>

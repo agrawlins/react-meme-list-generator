@@ -51,6 +51,7 @@ main {
 
 .form--button {
   grid-column: 1 / -1;
+  width: 100%;
   font-family: "Karla", sans-serif;
   border-radius: 5px;
   background: linear-gradient(90.41deg, #711F8D 1.14%, #A818DA 100%);
@@ -61,6 +62,36 @@ main {
 
 .meme {
   display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.meme--list > li {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  list-style-type: none;
+  margin: 0;
+}
+
+.meme--list {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 25%;
+  margin-right: 25%;
+  border-color: #000;
+  border-style: dashed;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.meme > div {
+  display: flex;
+  flex-direction: column;
   position: relative;
   justify-content: center;
 }
