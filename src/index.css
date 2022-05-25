@@ -69,6 +69,7 @@ main {
 .meme--list > li {
   display: flex;
   position: relative;
+  flex-direction: column;
   justify-content: center;
   list-style-type: none;
   margin: 0;
@@ -132,4 +133,11 @@ main {
 
 .top {
   top: 0;
+}
+
+.deleteButton{
+  position: relative;
+  top: 20px;
+  left: 150px;
+  width: 50px;
 }

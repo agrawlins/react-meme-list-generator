@@ -14,24 +14,34 @@ const Meme = () => {
         console.log("Edit Button pressed")
     }
 
-    const deleteMeme = () => {
-        console.log("Delete Button pressed")
+    const deleteMeme = (event) => {
+
+        setListState(param1 =>{
+           let deletedArray = [...param1]
+            let splicedArray = deletedArray.splice(event.target.parentElement.id, 1)
+            
+            return[
+                ...deletedArray
+
+            ]
+        })
     }
 
     let mappedList = listState.map((param1, index)=>{
 
         return(
             <div className="meme--list">
-                <li key={index}>
-                    <div>
+                <li key={index} id ={index}>
+                    
                         <img src={param1.randomImage} className="meme--image"/>
                         <h2 className="meme--text top">{param1.topText}</h2>
                         <h2 className="meme--text bottom">{param1.bottomText}</h2>
-                    </div>
+                        <button className = "deleteButton" onClick={deleteMeme}>X</button>
+                    
                 </li>
-                <div className="meme">
+                <div >
                     <button onClick={editMeme}>Edit</button>
-                    <button onClick={deleteMeme}>X</button>      
+                         
                 </div>
             </div>
                 
