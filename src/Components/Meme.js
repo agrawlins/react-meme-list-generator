@@ -8,6 +8,19 @@ const Meme = () => {
     })
     
     const [allMemeImages, setAllMemeImages] = React.useState([])
+    const [listState, setListState] = React.useState([])
+
+    let mappedList = listState.map((param1, index)=>{
+
+        return(
+        <li key={index} className="meme"> 
+         <img src={param1.randomImage} className="meme--image"/>
+                <h2 className="meme--text top">{param1.topText}</h2>
+                <h2 className="meme--text bottom">{param1.bottomText}</h2>        
+        </li>
+                
+        )
+    })
 
     React.useEffect(() => {
         fetch("https://api.imgflip.com/get_memes")
@@ -22,6 +35,14 @@ const Meme = () => {
             ...prevMeme,
             randomImage: url
         }))
+        setListState(param1 => [
+            ...param1,
+            {
+                topText: meme.topText,
+                bottomText: meme.bottomText,
+                randomImage: meme.randomImage
+            }
+        ])
     }
     
     const handleChange = (event) => {
@@ -63,6 +84,9 @@ const Meme = () => {
                 <h2 className="meme--text top">{meme.topText}</h2>
                 <h2 className="meme--text bottom">{meme.bottomText}</h2>
             </div>
+            <ul>
+                {mappedList}
+            </ul>
         </main>
     )
 }
