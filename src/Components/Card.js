@@ -42,12 +42,12 @@ const Card = (props) => {
                     <img src={card.randomImage} className="meme--image"/>
                     <h2 className="meme--text top">{card.topText}</h2>
                     <h2 className="meme--text bottom">{card.bottomText}</h2>
-                    <button className = "deleteButton" onClick={props.deleteMeme}>X</button>
+                    <div className="cardButtons" id={props.id}>
+                        <button className = "deleteButton" onClick={props.deleteMeme}>X</button>
+                        <button className="editButton" style={{display: edit ? "none" : "block"}}  onClick={() => {setEdit(!edit)}}>Edit</button> 
+                    </div>
                 </li>
-                <div>
-                    <button style={{display: edit ? "none" : "block"}}  onClick={() => {setEdit(!edit)}}>Edit</button> 
-
-
+                <div className="cardInputs">
                     <form className="form" style={{display: edit ? "block" : "none"}} onSubmit ={handleSubmit}>
                     <button 
                         className="form--button"
@@ -71,7 +71,7 @@ const Card = (props) => {
                         value={card.bottomText}
                         onChange={handleChange}
                     />
-                    <button>Submit Edits</button>
+                    <button>Save</button>
                 </form>   
                 </div>
             </div>    

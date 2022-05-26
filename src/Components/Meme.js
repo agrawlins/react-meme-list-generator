@@ -12,44 +12,6 @@ const Meme = () => {
     const [allMemeImages, setAllMemeImages] = React.useState([])
     const [listState, setListState] = React.useState([])
 
-    const editMemeMenu = (event) => {
-        console.log("Edit Button pressed")
-
-        return (
-            <div>
-                <div className="form">
-                    <button 
-                        className="form--button"
-                        onClick={getMemeImage}
-                    >
-                        Get a new meme image
-                    </button>
-                    <input 
-                        type="text"
-                        placeholder="Top text"
-                        className="form--input"
-                        name="topText"
-                        value={meme.topText}
-                        onChange={handleChange}
-                    />
-                    <input 
-                        type="text"
-                        placeholder="Bottom text"
-                        className="form--input"
-                        name="bottomText"
-                        value={meme.bottomText}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="meme">
-                    <img src={event.target.parentElement.id.img} className="meme--image" />
-                    <h2 className="meme--text top">{meme.topText}</h2>
-                    <h2 className="meme--text bottom">{meme.bottomText}</h2>
-                </div>
-            </div>
-        )
-    }
-
     const editMeme = (event) => {
         console.log("Meme Edited!")
         setListState(param1 =>{

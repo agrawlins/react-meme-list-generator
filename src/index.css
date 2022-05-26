@@ -51,6 +51,7 @@ main {
 
 .form--button {
   grid-column: 1 / -1;
+  align-content: center;
   width: 100%;
   font-family: "Karla", sans-serif;
   border-radius: 5px;
@@ -135,9 +136,28 @@ main {
   top: 0;
 }
 
-.deleteButton{
+.cardButtons {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px;
+}
+
+.cardInputs  {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px 0px;
+}
+
+.editButton{
+  display: flex;
+  justify-content: center;
   position: relative;
-  top: 20px;
-  left: 150px;
+  width: 50px;
+}
+
+.deleteButton{
+  display: flex;
+  justify-content: center;
+  position: relative;
   width: 50px;
 }
