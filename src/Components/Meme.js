@@ -1,4 +1,6 @@
 import React from "react";
+import { v4 as uuidv4 } from 'uuid';
+import Card from "./Card";
 
 const Meme = () => {
     const [meme, setMeme] = React.useState({
@@ -10,41 +12,70 @@ const Meme = () => {
     const [allMemeImages, setAllMemeImages] = React.useState([])
     const [listState, setListState] = React.useState([])
 
-    const editMeme = () => {
+    const editMemeMenu = (event) => {
         console.log("Edit Button pressed")
+
+        return (
+            <div>
+                <div className="form">
+                    <button 
+                        className="form--button"
+                        onClick={getMemeImage}
+                    >
+                        Get a new meme image
+                    </button>
+                    <input 
+                        type="text"
+                        placeholder="Top text"
+                        className="form--input"
+                        name="topText"
+                        value={meme.topText}
+                        onChange={handleChange}
+                    />
+                    <input 
+                        type="text"
+                        placeholder="Bottom text"
+                        className="form--input"
+                        name="bottomText"
+                        value={meme.bottomText}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="meme">
+                    <img src={event.target.parentElement.id.img} className="meme--image" />
+                    <h2 className="meme--text top">{meme.topText}</h2>
+                    <h2 className="meme--text bottom">{meme.bottomText}</h2>
+                </div>
+            </div>
+        )
+    }
+
+    const editMeme = (event) => {
+        console.log("Meme Edited!")
+        setListState(param1 =>{
+            let editedArray = [...param1]
+            let splicedArray = editedArray(event.target.parentElement.id, 1)
+
+             return[
+                 ...editedArray
+ 
+             ]
+         })
     }
 
     const deleteMeme = (event) => {
-
-        setListState(param1 =>{
-           let deletedArray = [...param1]
-            let splicedArray = deletedArray.splice(event.target.parentElement.id, 1)
-            
-            return[
-                ...deletedArray
-
-            ]
-        })
+        setListState(param1 => param1.filter(each => each.id !== event.target.parentElement.id))
     }
 
     let mappedList = listState.map((param1, index)=>{
 
         return(
-            <div className="meme--list">
-                <li key={index} id ={index}>
-                    
-                        <img src={param1.randomImage} className="meme--image"/>
-                        <h2 className="meme--text top">{param1.topText}</h2>
-                        <h2 className="meme--text bottom">{param1.bottomText}</h2>
-                        <button className = "deleteButton" onClick={deleteMeme}>X</button>
-                    
-                </li>
-                <div >
-                    <button onClick={editMeme}>Edit</button>
-                         
-                </div>
-            </div>
-                
+            <Card {...param1} 
+                key = {param1.id}
+                editMeme = {editMeme}
+                allMemeImages = {allMemeImages}
+                deleteMeme = {deleteMeme}
+            />
         )
     })
 
@@ -69,7 +100,8 @@ const Meme = () => {
             {
                 topText: meme.topText,
                 bottomText: meme.bottomText,
-                randomImage: meme.randomImage
+                randomImage: meme.randomImage,
+                id: uuidv4()
             }
         ])
     }
@@ -85,6 +117,12 @@ const Meme = () => {
     return (
         <main>
             <div className="form">
+                <button 
+                    className="form--button"
+                    onClick={getMemeImage}
+                >
+                    Get a new meme image
+                </button>
                 <input 
                     type="text"
                     placeholder="Top text"
@@ -101,12 +139,6 @@ const Meme = () => {
                     value={meme.bottomText}
                     onChange={handleChange}
                 />
-                <button 
-                    className="form--button"
-                    onClick={getMemeImage}
-                >
-                    Get a new meme image
-                </button>
             </div>
             <div className="meme">
                 <img src={meme.randomImage} className="meme--image" />
